@@ -12,33 +12,37 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
-    List<ArrayList<String>> base = new ArrayList<ArrayList<String>>();
-    Button log = findViewById(R.id.avt);
-    Button reg = findViewById(R.id.reg);
-    Button log_to = findViewById(R.id.log_to);
-    Button reg_to = findViewById(R.id.reg_to);
-    EditText login1 = findViewById(R.id.login1);
-    EditText login2 = findViewById(R.id.login2);
-    EditText pas1 = findViewById(R.id.password1);
-    EditText  pas2= findViewById(R.id.password2);
-    Toast toast_s = Toast.makeText(getApplicationContext(), "Вход выполнен успешно!", Toast.LENGTH_SHORT);
-    Toast toast_f = Toast.makeText(getApplicationContext(), "Введен неверный логин или пароль!", Toast.LENGTH_SHORT);
+
     boolean success= false;
+    Button log;
+    Button reg_to;
+    EditText login1;
+    EditText pas1;
+    Toast toast_s;
+    Toast toast_f;
+
+
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        log = findViewById(R.id.avt);
+        reg_to = findViewById(R.id.reg_to);
+        login1 = findViewById(R.id.login1);
+        pas1 = findViewById(R.id.password1);
+        toast_s = Toast.makeText(getApplicationContext(), "Вход выполнен успешно!", Toast.LENGTH_SHORT);
+        toast_f = Toast.makeText(getApplicationContext(), "Введен неверный логин или пароль!", Toast.LENGTH_SHORT);
+
 
         log.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 int i;
-                for(i=0; i<base.size(); i++){
-                    if(login1.getText().toString().equals(base.get(i).get(0))){
-                        success= true;
-                    }else success= false;
+                for(i=0; i<Base.base.size(); i++){
+                    success = login1.getText().toString().equals(Base.base.get(i).login) &&
+                            pas1.getText().toString().equals(Base.base.get(i).password);
                 }
                 if(success) toast_s.show();
                 else toast_f.show();
@@ -47,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
         reg_to.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, RegActyvity.class);
+                Intent intent = new Intent(MainActivity.this, REGActivity.class);
                 startActivity(intent);
 
                 }
