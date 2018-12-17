@@ -16,7 +16,6 @@ public class REGActivity extends AppCompatActivity {
     Button reg;
     Button log_to;
     Bundle arguments;
-    private static final String TAG = "MyApp";
 
 
     @Override
@@ -59,18 +58,20 @@ public class REGActivity extends AppCompatActivity {
                 Toast null_t = Toast.makeText(getApplicationContext(),
                         "Недопустимый формат Логина или пароля", Toast.LENGTH_SHORT);
                 for (int i = 0; i < Base.base.size(); i++) {
+                    Log.i("MyApp", Base.base.get(i).login.toString());
                     fail = login2.getText().toString().equals(Base.base.get(i).login);
                     if (fail) break;
                 }
-                if (login2.getText().toString().equals("") || login2.getText().toString().equals(""))
+                if (login2.getText().toString().equals("") || password2.getText().toString().equals(""))
                     null_t.show();
                 else {
                     if (fail) toast_f.show();
                     else {
-                        login2.setText("");
-                        password2.setText("");
+
                         Base.base.add(new Client(login2.getText().toString(),
                                 password2.getText().toString()));
+                        login2.setText("");
+                        password2  .setText("");
                         toast_s.show();
                     }
                 }

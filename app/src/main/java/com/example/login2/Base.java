@@ -4,5 +4,5 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Base {
-    static ArrayList<Client> base = new ArrayList<Client>();
+    static ArrayList<Client> base = new ArrayList<>();
 }
